@@ -1,0 +1,20 @@
+---
+output: github_document
+---
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# STAT 251 Lab presentations
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This repository contains the laboratory presentations for STAT 251 (Elementary Statistics), section L1H.
+
+- Lab 1 & 2 ([Quarto](labs-1-2.qmd)|[HTML](labs-1-2.html))
+
