@@ -1,0 +1,122 @@
+---
+title: "<span style='color:#f10f10f10; font-size:100pt'><br>
+Lab 1 & 2
+</span>"
+subtitle: "<span style='color:#f10f10f10; font-size:30pt'>
+ </span>"
+author: "<span style='color:#f10f10f10; font-size:30pt'>
+Javier Mtz.-Rdz.
+</span>"
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+# Setup ----
+## Packages to use ----
+if (!require("pacman")) install.packages("pacman")
+if (!require("remotes")) install.packages("remotes")
+if (!require("mytidyfunctions")) remotes::install_github("JavierMtzRdz/presupuestoR")
+pacman::p_load(tidyverse, janitor, writexl, 
+               readxl, scales, mytidyfunctions)
+
+## Set theme ------
+theme_set(theme_jmr(text = element_text(family = "Lato",
+                                        size=25),
+                    panel.grid = element_blank(),
+                    plot.title = formt_text(size = 35)))
+
+options(ggplot2.discrete.colour = c("#1E81A2", "#FF483B", "#039176", "#FFAC41"),
+        ggplot2.discrete.fill = c("#1E81A2", "#FF483B", "#039176", "#FFAC41"))
+
+## Specify locale ----
+Sys.setlocale("LC_ALL", "es_ES.UTF-8")
+
+## Disable scientific notation ----
+options(scipen = 999)
+```
+
+## Classroom distribution {background-image="frmt/normal-background-1.png"}
+
+![](figs/Lab_seatingplan.png){fig-align="center"}
+
+## {background-image="frmt/normal-background-1.png"}
+
+### Hi! I will be your TA for this term 🙋🏽‍♂️
+
+::: incremental
+-   My name: **Javier Martínez**.
+-   First-year master's student.
+-   I'm studying stats.
+-   I hope to assist you as much as possible to successfully complete the labs.
+:::
+
+## Lab structure {background-image="frmt/normal-background-1.png"}
+
+::: incremental
+-   Duration: 2 hours.
+    -   We will take a **break** midway.
+-   Two separate lab sessions.
+-   Make sure to review the **pre-reading material** on the website.
+-   You have been assigned to a **group** for all lab assignments.
+:::
+
+## Lab structure {background-image="frmt/normal-background-1.png"}
+
+::: incremental
+-   Each team will receive **two exercise** sheets and **one handout** sheet.
+-   **Discuss** every question with your teammates.
+-   **Ask!**
+:::
+
+## Lab 1 {background-image="frmt/normal-background-1.png"}
+
+#### Lab topics:
+
+R review
+
+#### R Advantages:
+
+-   **Open-Source**.
+-   An Active Community.
+-   Support for **statistical programming** is excellent.
+-   Easy data wrangling.
+
+## Lab 1 {background-image="frmt/normal-background-1.png"}
+
+#### Before Starting:
+
+- Ensure **R** is working properly on your computer.
+- I recommend  **RStudio**, an IDE with several advantages:
+    - Simple process for writing **R** code
+    - Ability to inspect variables
+    - Visualization of generated plots
+    - Additional useful features
+
+## Lab 1 {background-image="frmt/normal-background-1.png"}
+
+#### Hints and advises:
+
+-   The required functions can be found in the pre-reading material.
+    
+    When you need to view the required arguments for a function, you can do so by typing `?function`.
+-   How to access a dataset's variable? 
+    
+    `dataset$variable`
+    
+    
+
+## Lab 2 {background-image="frmt/normal-background-1.png"}
+
+#### Lab topic:
+
+Probability and Random Variables
+
+#### Hints and Tips:
+::: {style='font-size:1em'}
+- $P(\text{at least x times something happens})$ can be broken down into all possible scenarios.
+- Q2: The reliability of the chain is the probability that the chain works.
+  
+    It's recommended to start by dividing the chain into two sections.
+    
+:::
+
+
