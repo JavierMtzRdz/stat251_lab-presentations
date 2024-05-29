@@ -80,7 +80,7 @@ options(scipen = 999)
 *   Generate samples:<code style='color:#5C5C5C'>  rnorm(n)</code>, 
 *   $f_X(x) = P(X = x):$<code style='color:#039176'> dnorm(x) </code>
 *   $F_X(x)= P(X \leq  x):$<code style='color:#FF483B'> pnorm(x) </code> and 
-*   $F^{-1}_X(q)$ <code style='color:#1E81A2'> qnorm(q) </code>. 
+*   $F^{-1}_X(q):$ <code style='color:#1E81A2'> qnorm(q) </code>. 
 
 ##  {background-image="frmt/normal-background-1.png"}
 
@@ -152,13 +152,13 @@ d <- dnorm(1.65)
 *   An expression for a probability can look like
 one of the following: $P(a < X < b)$, $P(a \leq X \leq b)$, $P(a \leq X < b)$, $P(a < X)$, $P(a \leq X)$, $P(a > X)$, $P(a \geq X)$, etc.
 
-*   Remember the plotting function `hist` and `curve`.
+*   Don't forget about the plotting functions `hist()` and `curve()`.
 
 ## Lab 3 {background-image="frmt/normal-background-1.png"}
 
 #### Hints and advises:
 
-*   Remember the plotting function `hist` and `curve`.
+*   Don't forget about the plotting functions `hist()` and `curve()`.
 
 ```{r}
 #| echo: true
