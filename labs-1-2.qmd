@@ -2,11 +2,6 @@
 title: "<span style='color:#f10f10f10; font-size:100pt'><br>
 Lab 1 & 2
 </span>"
-subtitle: "<span style='color:#f10f10f10; font-size:30pt'>
- </span>"
-author: "<span style='color:#f10f10f10; font-size:30pt'>
-Javier Mtz.-Rdz.
-</span>"
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
