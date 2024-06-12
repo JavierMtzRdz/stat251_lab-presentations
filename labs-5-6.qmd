@@ -49,9 +49,10 @@ options(scipen = 999)
 
 **Sampling Distribution + CLT**
 
--   Understand Point Estimates
--   Learn relevant R functions (loops)
--   Review Random Variables
+-   Difference between a statistic & a parameter 
+-   A statistic can be a random variable
+-   Central Limit Theorem (CLT)
+
 
 -----
 
