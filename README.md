@@ -17,3 +17,6 @@ This repository contains the laboratory presentations for STAT 251
 
 - Lab 5 & 6
   ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-5-6#/title-slide)\|[Quarto](labs-5-6.qmd))
+
+- Lab 7 & 8
+  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-7-8#/title-slide)\|[Quarto](labs-7-8.qmd))
