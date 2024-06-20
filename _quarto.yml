@@ -14,5 +14,8 @@ format:
     css: styles.css
     toc: true
 
+include-in-header: # Correct when needed
+  - text: |
+     <link rel = "shortcut icon" href = "https://raw.githubusercontent.com/JavierMtzRdz/JavierMtzRdz.github.io/gh-pages/assets/img/logo.ico" /> 
 
 
