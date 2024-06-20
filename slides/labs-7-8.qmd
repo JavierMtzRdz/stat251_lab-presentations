@@ -1,7 +1,6 @@
 ---
-title: "<span style='color:#f10f10f10; font-size:100pt'><br>
-Lab 7 & 8
-</span>"
+title: "<span style='color:#f10f10f10; font-size:100pt'><br>Lab 7 & 8</span>"
+subtitle: "Confidence Intervals, Hypothesis Testing and ANOVA"
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}

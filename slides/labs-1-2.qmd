@@ -1,5 +1,6 @@
 ---
 title: "<span style='color:#f10f10f10; font-size:100pt'><br>Lab 1 & 2</span>"
+subtitle: "R review, Probability and Random Variables"
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}

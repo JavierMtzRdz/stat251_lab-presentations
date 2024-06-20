@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# STAT 251 Lab presentations
+# STAT 251-Elementary Statistics: Lab presentations
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -9,14 +9,15 @@
 This repository contains the laboratory presentations for STAT 251
 (Elementary Statistics), section L1H.
 
-- Lab 1 & 2
+- Lab 1 & 2: R review, Probability and Random Variables
   ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-1-2#/title-slide)\|[Quarto](slides/labs-1-2.qmd))
 
-- Lab 3 & 4
+- Lab 3 & 4: Distribution Functions, Minimum and Maximum of Independent
+  Random Variables
   ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-3-4#/title-slide)\|[Quarto](slides/labs-3-4.qmd))
 
-- Lab 5 & 6
+- Lab 5 & 6: Sampling Distribution, CLT and Point Estimates
   ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-5-6#/title-slide)\|[Quarto](slides/labs-5-6.qmd))
 
-- Lab 7 & 8
+- Lab 7 & 8: Confidence Intervals, Hypothesis Testing and ANOVA
   ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-7-8#/title-slide)\|[Quarto](slides/labs-7-8.qmd))

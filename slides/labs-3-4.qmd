@@ -1,19 +1,10 @@
 ---
 title: "<span style='color:#f10f10f10; font-size:100pt'><br>Lab 3 & 4</span>"
+subtitle: "Distribution Functions, Minimum and Maximum of Independent Random Variables"
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("_config.R")
-
-## Set theme ------
-theme_set(theme_jmr(
-  text = element_text(
-    family = "Lato",
-    size = 15
-  ),
-  panel.grid = element_blank(),
-  plot.title = formt_text(size = 25)
-))
 ```
 
 ## Classroom distribution {background-image="frmt/normal-background-1.png"}

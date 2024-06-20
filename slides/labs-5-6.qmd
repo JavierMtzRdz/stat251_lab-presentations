@@ -1,11 +1,19 @@
 ---
-title: "<span style='color:#f10f10f10; font-size:100pt'><br>
-Lab 5 & 6
-</span>"
+title: "<span style='color:#f10f10f10; font-size:100pt'><br>Lab 5 & 6</span>"
+subtitle: "Sampling Distribution, CLT and Point Estimates"
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("_config.R")
+## Set theme ------
+theme_set(theme_jmr(
+  text = element_text(
+    family = "Lato",
+    size = 15
+  ),
+  panel.grid = element_blank(),
+  plot.title = formt_text(size = 25)
+))
 ```
 
 ## Classroom distribution {background-image="frmt/normal-background-1.png"}

@@ -2,16 +2,17 @@ project:
   type: website
 
 website:
-  title: "STAT 251 Lab presentations"
+  title: "STAT 251-Lab presentations"
   navbar:
     right:
-      - href: index.qmd
-        text: Home
+      - text: Github
+        url: https://github.com/JavierMtzRdz/stat251_lab-presentations
+        icon: github
 
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: slides/frmt/theme.css
     toc: true
 
 include-in-header: # Correct when needed
