@@ -1,0 +1,205 @@
+---
+title: "<span style='color:#f10f10f10; font-size:100pt'><br>Lab 3 & 4</span>"
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+source("_config.R")
+
+## Set theme ------
+theme_set(theme_jmr(
+  text = element_text(
+    family = "Lato",
+    size = 15
+  ),
+  panel.grid = element_blank(),
+  plot.title = formt_text(size = 25)
+))
+```
+
+## Classroom distribution {background-image="frmt/normal-background-1.png"}
+
+![](figs/Lab_seatingplan.png){fig-align="center"}
+
+## Important Reminders {background-image="frmt/normal-background-1.png"}
+
+*   **Get involved!** Watching others work can lead you to believe you understand when in fact you don’t.
+*   Make sure to give others an opportunity to express themselves.
+*   If needed, and wanted, **help other groups, but don’t do things for them**.
+*   Discuss the problems **respectfully**.
+
+
+## Lab 3 {background-image="frmt/normal-background-1.png"}
+
+:::: .columns
+
+::: {.column width="30%"}
+
+#### Lab topics:
+
+**Distribution Functions**
+
+-   Distributions
+-   R Commands
+
+:::
+
+::: {.column width="70%"}
+
+![](figs/r-distributions.jpeg){.absolute width="80%" left="295" top="0"}
+:::
+
+::::
+
+
+##  {background-image="frmt/normal-background-1.png"}
+
+### An example: **Standard Normal distribution**
+
+*   Generate samples:<code style='color:#5C5C5C'>  rnorm(n)</code>, 
+*   $f_X(x) = P(X = x):$<code style='color:#039176'> dnorm(x) </code>
+*   $F_X(x)= P(X \leq  x):$<code style='color:#FF483B'> pnorm(x) </code> and 
+*   $F^{-1}_X(q):$ <code style='color:#1E81A2'> qnorm(q) </code>. 
+
+##  {background-image="frmt/normal-background-1.png"}
+
+### An example: **Standard Normal distribution**
+
+<code style='color:#5C5C5C'> Generate samples: rnorm(30)</code>, 
+<code style='color:#039176'> dnorm(1.65), </code>
+<code style='color:#FF483B'> pnorm(1.65) </code> and 
+<code style='color:#1E81A2'> qnorm(0.85) </code>.
+
+```{r echo=FALSE}
+set.seed(251)
+r <- rnorm(30)
+q <- qnorm(0.85)
+d <- dnorm(1.65)
+
+(plot <- ggplot() +
+  geom_function(
+    fun = dnorm,
+    lty = "dashed"
+  ) +
+  stat_function(
+    fun = dnorm,
+    geom = "area",
+    args = list(mean = 0, sd = 1),
+    fill = "#FF483B",
+    alpha = 0.8,
+    xlim = c(-3, 1.65)
+  ) +
+  geom_dots(
+    data = tibble(x = r),
+    aes(x = x),
+    scale = 0.3,
+    height = 0.5,
+    alpha = 0.8
+  ) +
+  geom_point(aes(x = 1.65, y = d),
+    color = "#039176",
+    size = 6
+  ) +
+  geom_segment(aes(x = 1.65, xend = 1.65, y = 0, yend = d),
+    color = "#039176",
+    size = 1,
+    linetype = "dashed"
+  ) +
+  geom_point(aes(x = q, y = 0),
+    color = "#1E81A2",
+    size = 6
+  ) +
+  scale_fill_manual(
+    values = c("transparent", "#FF483B"),
+    guide = "none"
+  ) +
+  labs(
+    x = "x",
+    y = "Probability density"
+  ) +
+  xlim(-3, 3)
+)
+```
+
+
+## Lab 3 {background-image="frmt/normal-background-1.png"}
+
+#### Hints and advises:
+
+*   Consider the parameters required for the corresponding distribution.
+
+*   An expression for a probability can look like
+one of the following: $P(a < X < b)$, $P(a \leq X \leq b)$, $P(a \leq X < b)$, $P(a < X)$, $P(a \leq X)$, $P(a > X)$, $P(a \geq X)$, etc.
+
+*   Don't forget about the plotting functions `hist()` and `curve()`.
+
+## Lab 3 {background-image="frmt/normal-background-1.png"}
+
+#### Hints and advises:
+
+*   Don't forget about the plotting functions `hist()` and `curve()`.
+
+```{r}
+#| echo: true
+#| code-fold: true
+a <- 10 # minimum
+b <- 25 # maximum
+x <- runif(n = 10000, min = a, max = b)
+hist(x, prob = T)
+curve(dunif(x, min = a, max = b),
+  from = a, to = b, add = T,
+  col = "red"
+)
+```
+
+
+
+## Lab 4 {background-image="frmt/normal-background-1.png"}
+
+#### Lab topic:
+
+Minimum and Maximum of Independent Random Variables
+
+#### Hints and advises:
+
+*   Note that the **notation is graded**, so be mindful of it.
+
+## Lab 4 {background-image="frmt/normal-background-1.png"}
+
+#### Hints and advises:
+
+*   You can use `r<dist>` to simulate.
+
+```{r}
+#| echo: true
+#| code-fold: true
+n <- 1000
+Xa <- rexp(n, rate = 1 / 40)
+Xb <- rexp(n, rate = 1 / 50)
+```
+
+*   And create another r.v. from it. 
+```{r}
+#| echo: true
+#| code-fold: true
+X <- cbind(Xa, Xb) # Matrix n*2
+Y1 <- apply(X, 1, max) # Vector w/ n obs.
+```
+
+## Lab 4 {background-image="frmt/normal-background-1.png"}
+
+#### Hints and advises:
+
+*   You can create your own functions and plot them.
+
+
+```{r}
+#| echo: true
+#| code-fold: true
+hist(Y1, prob = T, breaks = 40) # draw a histogram
+# define a function of the pdf in Section 1.1
+f1 <- function(y) {
+  1 / 40 * exp(-y / 40) + 1 / 50 * exp(-y / 50) - 9 / 200 * exp(-9 * y / 200)
+}
+# draw a curve based on the above function and add it to the histogram
+curve(f1, from = 0, to = 350, add = T, col = "red")
+```

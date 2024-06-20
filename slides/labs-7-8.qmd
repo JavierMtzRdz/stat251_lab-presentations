@@ -1,0 +1,473 @@
+---
+title: "<span style='color:#f10f10f10; font-size:100pt'><br>
+Lab 7 & 8
+</span>"
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+source("_config.R")
+```
+
+## Classroom distribution {background-image="frmt/normal-background-1.png"}
+
+![](figs/Lab_seatingplan.png){fig-align="center"}
+
+
+
+## Lab 7 {background-image="frmt/normal-background-1.png"}
+
+#### Lab topics:
+
+**Confidence Intervals and Hypothesis Testing**
+
+-   t distribution
+-   Confidence Intervals definition and interpretation
+-   CI in hypothesis testing
+
+
+##  {background-image="frmt/normal-background-1.png"}
+
+:::: .columns
+
+::: {.column width="40%"}
+
+**Review**:
+
+- A **confidence interval (CI)** is an estimate of a range of values that is likely to include the true population parameter of interest.
+- A CI is $\text{CI} = \bar{x} \pm Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}$
+
+:::
+
+
+::: {.column width="55%"}
+
+
+```{r}
+#| echo: false
+#| fig-height: 7
+
+population <- 1500
+actual_successes <- 105
+test_successes <- 1:300
+
+density <- dbinom(test_successes, population, actual_successes/population)
+probs   <- pbinom(test_successes, population, actual_successes/population)
+label   <- ifelse(probs < 0.025, "low", ifelse(probs > 0.975, "high", "CI"))
+
+ggplot(data.frame(probability = test_successes/population, density, label),
+       aes(probability, density, fill = label)) +
+  geom_area(alpha = 0.5) +
+  geom_vline(xintercept = actual_successes/population, linetype = 2) + 
+  scale_fill_manual(values = c("gray70", "deepskyblue4", "deepskyblue4"),
+                    guide = guide_none()) +
+  scale_x_continuous(limits = c(0.05, 0.09), breaks = 3:12/100,
+                     name = "x") 
+
+
+```
+:::
+
+::::
+
+##  {background-image="frmt/normal-background-1.png"}
+
+**Review**:
+
+- We use a t-distribution instead of a normal distribution when we do not know the value of $\sigma$.
+
+**A simulation:**
+
+```{r}
+#| echo: true
+#| code-fold: true
+N <- 10000 # number of iteration 
+n <- 16 # sample size
+m <- 10 # mean
+s <- sqrt(9) # SD
+alpha <- 0.05 # (1-confidence level)
+
+un <- nw <- matrix(NA, nrow =N, ncol =2) # 2 blank matrices 
+evaluate <- evaluate.true <- rep(FALSE, N) # 2 blank vectors
+in.CI <- function(x){ (x[1]<=m & m<=x[2])}
+# Define a function called in.CI. The input x is a 2-element vector, representing an interval. If m is within the interval, in.CI return TRUE, otherwise returns FALSE.
+
+for (i in 1:N){ # loop starts
+Sample <- rnorm(n, m, s) # generate normal variates with given parameters
+un[i,] <- c(mean(Sample) - (-1)*qt(alpha/2, df = n - 1)*sd(Sample)/sqrt(n), mean(Sample) + (-1)*qt(alpha/2, df = n - 1)*sd(Sample)/sqrt(n) )
+# Calculate the i-th confidence interval for estimated SD
+nw[i,] <- c(mean(Sample) - (-1)*qnorm(alpha/2)*s/sqrt(n), mean(Sample) + (-1)*qnorm(alpha/2)*s/sqrt(n) )
+# Calculate the i-th confidence interval for known SD
+evaluate[i] <- in.CI(un[i,])
+# m is contained in 1st CI when SD unknown? 
+evaluate.true[i] <- in.CI(nw[i,])
+# m is contained in 2nd CI when SD known?
+}
+sum(evaluate == FALSE)/N # count and make a ratio sum(evaluate.true == FALSE)/N # count and make a ratio"
+
+#
+#
+#
+#
+#
+```
+
+##  {background-image="frmt/normal-background-1.png"}
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+conf_int <- function(n = 100, mean = 0, sd = 1){
+  sample <- rnorm(n = n, mean = mean, sd = sd)
+  test <- t.test(sample)
+  result <- broom::tidy(test) |>
+    select(estimate, conf.low, conf.high, p.value)
+  return(result)
+}
+
+set_intervals <- function(sample  = 100, n = 100, mean = 0, sd = 1){
+  
+  intervals <- map_dfr(1:sample, ~ conf_int(n = n, mean = mean, sd = sd))
+  
+  intervals <- intervals |>
+    mutate(id = 1:n(),
+           result = ifelse(sign(conf.low) == sign(conf.high), "reject", "accept")) |>
+    relocate(id)
+  
+  return(intervals)
+}
+
+set.seed(1111)
+intervals <- set_intervals(sample = 20,
+                           n = 20)
+
+intervals |>
+  ggplot(aes(estimate, id, color = result)) +
+  geom_point() +
+  geom_segment(aes(x = conf.low, y = id, xend = conf.high, yend = id, color = result)) +
+  geom_vline(xintercept = 0,
+             linetype = "dashed")
+```
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+*   A statistical hypothesis is a claim about the value of a parameter.
+
+*   In any hypothesis-testing problem, there are two contradictory hypotheses to consider: null-hypothesis ($H_0$) and alternative hypothesis ($H_a$).
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+*   If there are two types of tests that we will deal with. If $\mu$ is the true value and $\mu_0$ is the postulated value, for which we are testing, then the possible one-sided and two-sided tests are:
+  *   One-sided: $H_o: \mu \geq \mu_o,H_a: \mu < \mu_o$ or $H_o: \mu \leq \mu_o,H_a: \mu > \mu_o$
+  *   Two-sided: $H_o: \mu = \mu_o,H_a: \mu \neq \mu_o$
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+Based on that, we create our <span style='color:#808080'>null model</span>.
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+
+q <- map_dbl(c(0.05, 0.025, 0.975, 0.95), qnorm)
+z <- tibble(Z = seq(-4, 4, 0.01), density = dnorm(Z))
+
+(
+  plot <- ggplot(z) + 
+    geom_area(aes(Z, density),
+              linewidth = 2,
+              color = "black",
+              fill = "grey",
+              alpha = 0.2) + 
+    ylab("Density") + 
+    xlab(" ") + 
+    scale_y_continuous(breaks = NULL) +
+    scale_x_continuous(breaks = 0, 
+                       labels = expression(mu[0]),
+                       limits = c(-4, 4)) +
+    ggtitle(expression(paste(H[0], ": ", mu == mu[0], " vs ",
+                             H[1], ": ", mu > mu[0]))) 
+)
+  
+```
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+::: {style="text-align: center"}
+<span style='color:#808080'>Null model</span> | <span style='color:#FF483B'>Significance level </span>
+:::
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+
+cv <- 0.9
+
+q_cv <- qnorm(cv)
+
+(plot <- plot +
+    geom_segment(aes(x = q_cv, xend= q_cv, 
+                     y = 0, yend=dnorm(q_cv)),
+                 colour="#FF483B", linetype = 'dashed') +
+    geom_ribbon(z %>% filter(Z > q_cv),
+                mapping = aes(x = Z, ymax = density, ymin = 0),
+                alpha = 0.3, fill = "#FF483B") + 
+    scale_x_continuous(labels = c(expression(mu[0]),
+                                  expression(q[1-alpha])),
+                       breaks = c(0, q_cv)) 
+)
+  
+```
+
+
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+::: {style="text-align: center"}
+<span style='color:#808080'>Null model</span> | <span style='color:#FF483B'>Significance level </span> | <span style='color:#1E81A2'>P-value</span>
+:::
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+
+
+test_statistic <- 0.95
+
+(plot_rej_null <- plot +
+    geom_segment(aes(x = qnorm(test_statistic), xend= qnorm(test_statistic), 
+                     y = 0, yend=dnorm(qnorm(test_statistic))),
+                 colour="#1E81A2",
+                 linetype = 'dashed') +
+    geom_ribbon(z %>% filter(Z > qnorm(test_statistic)),
+                mapping = aes(x = Z, ymax = density, ymin = 0),
+                alpha = 0.3, fill = "#1E81A2") +
+    scale_x_continuous(labels = c(expression(mu[0]),
+                                  expression(mu),
+                                  expression(q[1-alpha])),
+                       breaks = c(0, 
+                                  qnorm(test_statistic),
+                                  qnorm(0.9))) 
+)
+  
+```
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+::: {style="text-align: center"}
+<span style='color:#808080'>Null model</span> | <span style='color:#FF483B'>Significance level </span> | <span style='color:#1E81A2'>P-value</span>
+:::
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+
+
+test_statistic <- 0.8
+
+(plot_acc_null <- plot +
+    geom_segment(aes(x = qnorm(test_statistic), xend= qnorm(test_statistic), 
+                     y = 0, yend=dnorm(qnorm(test_statistic))),
+                 colour="#1E81A2",
+                 linetype = 'dashed') +
+    geom_ribbon(z %>% filter(Z > qnorm(test_statistic)),
+                mapping = aes(x = Z, ymax = density, ymin = 0),
+                alpha = 0.3, fill = "#1E81A2") +
+    scale_x_continuous(labels = c(expression(mu[0]),
+                                  expression(mu),
+                                  expression(q[1-alpha])),
+                       breaks = c(0, 
+                                  qnorm(test_statistic),
+                                  qnorm(0.9))) 
+)
+  
+```
+
+
+## Hypothesis testing{background-image="frmt/normal-background-1.png"}
+
+When we increase the $n$, the null model distribution becomes narrower.
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+
+cv2 <- 0.9
+
+q_cv2 <- qnorm(cv2, 0, 0.5)
+
+q2 <- map_dbl(c(0.05, 0.025, 0.975, 0.95), qnorm, 0, 0.5)
+z2 <- tibble(Z = seq(-4, 4, 0.01), density = dnorm(Z, 0, 0.5))
+
+
+(plot_acc_null2 <- plot_acc_null +
+    geom_area(data = z2,
+              aes(Z, density),
+              linewidth = 2,
+              linetype = "dashed",
+              color = "black",
+              fill = "grey",
+              alpha = 0.2) + 
+    geom_segment(aes(x = q_cv2, xend= q_cv2, 
+                     y = 0, yend=dnorm(q_cv2, 0, 0.5)),
+                 colour="#FF483B", linetype = 'dashed') +
+    geom_ribbon(z2 %>% filter(Z > q_cv2),
+                mapping = aes(x = Z, ymax = density, ymin = 0),
+                alpha = 0.3, fill = "#FF483B") + 
+    scale_x_continuous(labels = c(expression(mu[0]),
+                                  expression(q[1-alpha])),
+                       breaks = c(0, q_cv2)) 
+)
+
+# (plot_acc_null2 <- plot_acc_null)
+  
+```
+
+## Lab 8 {background-image="frmt/normal-background-1.png"}
+
+#### Lab topics:
+
+**ANOVA**
+
+-   ANOVA vs pairwise comparison
+-   Hypothesis of ANOVA
+-   Interpretation
+
+## Multiple comparisons {background-image="frmt/normal-background-1.png"}
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+#| message: false
+pacman::p_load(tidyverse, janitor, writexl, 
+              readxl, scales, mytidyfunctions, 
+              presupuestoR, ggdist, 
+              distributional, ggpubr)
+pacman::p_load(palmerpenguins)
+library(infer)
+library(datateachr)
+library(testthat)
+library(digest)
+library(broom)
+
+
+
+dat <- penguins %>%
+  select(species, flipper_length_mm)
+
+dat$species <- relevel(dat$species, ref = "Gentoo")
+
+ggplot(dat) +
+  aes(x = species, y = flipper_length_mm, color = species) +
+  geom_jitter() +
+  theme(legend.position = "none") +
+  labs(x = "Specie",
+       y = "Length (mm)")
+  
+```
+
+
+## One-Way ANOVA {background-image="frmt/normal-background-1.png"}
+
+In this case, our hypothesis involves multiple means. 
+
+
+
+$$H_0: \mu_1 = \mu_2 = \cdots = \mu_n, \,\,\, n \geq 3.$$
+
+
+
+$$H_1: \text{at least one mean is different. }$$
+
+
+## One-Way ANOVA {background-image="frmt/normal-background-1.png"}
+
+Assumptions and requirements:
+
+* ANOVA requires one **continuous variable** and another one that is **categorical**.
+* Residuals are **normally distributed**.
+* **Variances of populations are equal** (the highest variance isn't many multiples bigger than the smallest group variance).
+* Responses for a given group are **independent and identically distributed**.
+
+
+## One-Way ANOVA {background-image="frmt/normal-background-1.png"} 
+
+If p-value > $\alpha$: 
+
+* There are no significant differences **between the groups**.
+
+If p-value < $\alpha$: 
+
+* There are is a significant difference between **at least one pair** of the groups.
+* Pairwise t-tests will identify the significant difference(s).
+
+
+## One-Way ANOVA {background-image="frmt/normal-background-1.png"}  {visibility="hidden"}
+
+```{r echo=TRUE}
+res_aov <- aov(flipper_length_mm ~ species,
+  data = dat
+)
+
+summary(res_aov)
+```
+
+
+## One-Way ANOVA {background-image="frmt/normal-background-1.png"}
+
+
+```{r, dev.args=list(bg="transparent")}
+#| fig-height: 4.5
+#| fig-width: 8
+#| fig-align: "center"
+#| dev: "png"
+#| message: false
+
+
+# Edit from here
+x <- which(names(dat) == "species") # name of grouping variable
+y <- which(
+  names(dat) == "flipper_length_mm" # names of variables to test
+)
+method1 <- "anova" # one of "anova" or "kruskal.test"
+method2 <- "t.test" # one of "wilcox.test" or "t.test"
+my_comparisons <- list(c("Chinstrap", "Adelie"), c("Gentoo", "Adelie"), c("Gentoo", "Chinstrap")) # comparisons for post-hoc tests
+# Edit until here
+
+
+# Edit at your own risk
+
+for (i in y) {
+  for (j in x) {
+    p <- ggboxplot(dat,
+      x = colnames(dat[j]), y = colnames(dat[i]),
+      color = colnames(dat[j]),
+      legend = "none",
+      palette = "npg",
+      add = "jitter"
+    )
+    print(
+      p + stat_compare_means(aes(label = paste0(after_stat(method), ", p-value = ", after_stat(p.format))),
+        method = method1, label.y = max(dat[, i], na.rm = TRUE)
+      )
+      + stat_compare_means(comparisons = my_comparisons, method = method2, label = "p.format") +# remove if p-value of ANOVA or Kruskal-Wallis test >= alpha
+          labs(x = "Specie",
+       y = "Length (mm)")
+    )
+  }
+}
+  
+```
+

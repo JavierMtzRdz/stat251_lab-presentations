@@ -1,0 +1,47 @@
+bibliography: refs/refs.bib
+format: 
+  revealjs:
+    embed-resources: true 
+    width: 1200
+    slide-number: c
+    background-image: frmt/normal-background-1.png
+    parallax-background-size: 100% 100%
+    background-size: 100% 100%
+    background-position: 100% 100%
+    background-repeat: no-repeat
+    fontsize: 2.8em
+    css: ["frmt/theme.css"]
+    self-contained-math: true
+    fig-format: svg
+    fig-align: center
+    fig-width: 8
+    fig-height: 4.5
+    fig-dpi: 500
+    scrollable: false
+    transition: none
+    link-external-icon: true
+    link-external-newwindow: true
+    background-transition: fade
+    code-overflow: wrap
+title-slide-attributes:
+    data-background-image: frmt/background.png
+    data-background-size: 100% 100%  
+    
+knitr:
+  opts_chunk:
+    comment: "#>"
+    message: FALSE
+    dev: "png"
+    fig.width: 8
+    fig.height: 4.5
+    fig.align: center
+    fig.path: "figs/"
+    dev.args:
+      bg: "transparent" # plot backgrounds
+      
+include-in-header: # Correct when needed
+  - text: |
+     <link rel = "shortcut icon" href = "https://raw.githubusercontent.com/JavierMtzRdz/JavierMtzRdz.github.io/gh-pages/assets/img/logo.ico" /> 
+
+editor_options: 
+  chunk_output_type: console

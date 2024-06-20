@@ -10,13 +10,13 @@ This repository contains the laboratory presentations for STAT 251
 (Elementary Statistics), section L1H.
 
 - Lab 1 & 2
-  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-1-2#/title-slide)\|[Quarto](labs-1-2.qmd))
+  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-1-2#/title-slide)\|[Quarto](slides/labs-1-2.qmd))
 
 - Lab 3 & 4
-  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-3-4#/title-slide)\|[Quarto](labs-3-4.qmd))
+  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-3-4#/title-slide)\|[Quarto](slides/labs-3-4.qmd))
 
 - Lab 5 & 6
-  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-5-6#/title-slide)\|[Quarto](labs-5-6.qmd))
+  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-5-6#/title-slide)\|[Quarto](slides/labs-5-6.qmd))
 
 - Lab 7 & 8
-  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/labs-7-8#/title-slide)\|[Quarto](labs-7-8.qmd))
+  ([slides](https://javiermtzrdz.github.io/stat251_lab-presentations/slides/labs-7-8#/title-slide)\|[Quarto](slides/labs-7-8.qmd))
