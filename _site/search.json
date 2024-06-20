@@ -1,0 +1,338 @@
+[
+  {
+    "objectID": "slides/labs-3-4.html#classroom-distribution",
+    "href": "slides/labs-3-4.html#classroom-distribution",
+    "title": "Lab 3 & 4",
+    "section": "Classroom distribution",
+    "text": "Classroom distribution"
+  },
+  {
+    "objectID": "slides/labs-3-4.html#important-reminders",
+    "href": "slides/labs-3-4.html#important-reminders",
+    "title": "Lab 3 & 4",
+    "section": "Important Reminders",
+    "text": "Important Reminders\n\nGet involved! Watching others work can lead you to believe you understand when in fact you don’t.\nMake sure to give others an opportunity to express themselves.\nIf needed, and wanted, help other groups, but don’t do things for them.\nDiscuss the problems respectfully."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-3",
+    "href": "slides/labs-3-4.html#lab-3",
+    "title": "Lab 3 & 4",
+    "section": "Lab 3",
+    "text": "Lab 3\n\n\nLab topics:\nDistribution Functions\n\nDistributions\nR Commands"
+  },
+  {
+    "objectID": "slides/labs-3-4.html#section",
+    "href": "slides/labs-3-4.html#section",
+    "title": "Lab 3 & 4",
+    "section": "",
+    "text": "An example: Standard Normal distribution\n\nGenerate samples: rnorm(n),\n\\(f_X(x) = P(X = x):\\) dnorm(x) \n\\(F_X(x)= P(X \\leq  x):\\) pnorm(x)  and\n\\(F^{-1}_X(q):\\)  qnorm(q) ."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#section-1",
+    "href": "slides/labs-3-4.html#section-1",
+    "title": "Lab 3 & 4",
+    "section": "",
+    "text": "An example: Standard Normal distribution\n Generate samples: rnorm(30),  dnorm(1.65),   pnorm(1.65)  and  qnorm(0.85) ."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-3-1",
+    "href": "slides/labs-3-4.html#lab-3-1",
+    "title": "Lab 3 & 4",
+    "section": "Lab 3",
+    "text": "Lab 3\nHints and advises:\n\nConsider the parameters required for the corresponding distribution.\nAn expression for a probability can look like one of the following: \\(P(a &lt; X &lt; b)\\), \\(P(a \\leq X \\leq b)\\), \\(P(a \\leq X &lt; b)\\), \\(P(a &lt; X)\\), \\(P(a \\leq X)\\), \\(P(a &gt; X)\\), \\(P(a \\geq X)\\), etc.\nDon’t forget about the plotting functions hist() and curve()."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-3-2",
+    "href": "slides/labs-3-4.html#lab-3-2",
+    "title": "Lab 3 & 4",
+    "section": "Lab 3",
+    "text": "Lab 3\nHints and advises:\n\nDon’t forget about the plotting functions hist() and curve().\n\n\n\nCode\na &lt;- 10 # minimum\nb &lt;- 25 # maximum\nx &lt;- runif(n = 10000, min = a, max = b)\nhist(x, prob = T)\ncurve(dunif(x, min = a, max = b),\n  from = a, to = b, add = T,\n  col = \"red\"\n)"
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-4",
+    "href": "slides/labs-3-4.html#lab-4",
+    "title": "Lab 3 & 4",
+    "section": "Lab 4",
+    "text": "Lab 4\nLab topic:\nMinimum and Maximum of Independent Random Variables\nHints and advises:\n\nNote that the notation is graded, so be mindful of it."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-4-1",
+    "href": "slides/labs-3-4.html#lab-4-1",
+    "title": "Lab 3 & 4",
+    "section": "Lab 4",
+    "text": "Lab 4\nHints and advises:\n\nYou can use r&lt;dist&gt; to simulate.\n\n\n\nCode\nn &lt;- 1000\nXa &lt;- rexp(n, rate = 1 / 40)\nXb &lt;- rexp(n, rate = 1 / 50)\n\n\n\nAnd create another r.v. from it.\n\n\n\nCode\nX &lt;- cbind(Xa, Xb) # Matrix n*2\nY1 &lt;- apply(X, 1, max) # Vector w/ n obs."
+  },
+  {
+    "objectID": "slides/labs-3-4.html#lab-4-2",
+    "href": "slides/labs-3-4.html#lab-4-2",
+    "title": "Lab 3 & 4",
+    "section": "Lab 4",
+    "text": "Lab 4\nHints and advises:\n\nYou can create your own functions and plot them.\n\n\n\nCode\nhist(Y1, prob = T, breaks = 40) # draw a histogram\n# define a function of the pdf in Section 1.1\nf1 &lt;- function(y) {\n  1 / 40 * exp(-y / 40) + 1 / 50 * exp(-y / 50) - 9 / 200 * exp(-9 * y / 200)\n}\n# draw a curve based on the above function and add it to the histogram\ncurve(f1, from = 0, to = 350, add = T, col = \"red\")"
+  },
+  {
+    "objectID": "slides/labs-1-2.html#classroom-distribution",
+    "href": "slides/labs-1-2.html#classroom-distribution",
+    "title": "Lab 1 & 2",
+    "section": "Classroom distribution",
+    "text": "Classroom distribution"
+  },
+  {
+    "objectID": "slides/labs-1-2.html#section",
+    "href": "slides/labs-1-2.html#section",
+    "title": "Lab 1 & 2",
+    "section": "",
+    "text": "Hi! I will be your TA for this term 🙋🏽‍♂️\n\n\nMy name: Javier Martínez.\nFirst-year master’s student.\nI’m studying stats.\nI hope to assist you as much as possible to successfully complete the labs."
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-structure",
+    "href": "slides/labs-1-2.html#lab-structure",
+    "title": "Lab 1 & 2",
+    "section": "Lab structure",
+    "text": "Lab structure\n\n\nDuration: 2 hours.\n\nWe will take a break midway.\n\nTwo separate lab sessions.\nMake sure to review the pre-reading material on the website.\nYou have been assigned to a group for all lab assignments."
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-structure-1",
+    "href": "slides/labs-1-2.html#lab-structure-1",
+    "title": "Lab 1 & 2",
+    "section": "Lab structure",
+    "text": "Lab structure\n\n\nEach team will receive two exercise sheets and one handout sheet.\nDiscuss every question with your teammates.\nAsk!"
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-1",
+    "href": "slides/labs-1-2.html#lab-1",
+    "title": "Lab 1 & 2",
+    "section": "Lab 1",
+    "text": "Lab 1\nLab topics:\nR review\nR Advantages:\n\nOpen-Source.\nAn Active Community.\nSupport for statistical programming is excellent.\nEasy data wrangling."
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-1-1",
+    "href": "slides/labs-1-2.html#lab-1-1",
+    "title": "Lab 1 & 2",
+    "section": "Lab 1",
+    "text": "Lab 1\nBefore Starting:\n\nEnsure R is working properly on your computer.\nI recommend RStudio, an IDE with several advantages:\n\nSimple process for writing R code\nAbility to inspect variables\nVisualization of generated plots\nAdditional useful features"
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-1-2",
+    "href": "slides/labs-1-2.html#lab-1-2",
+    "title": "Lab 1 & 2",
+    "section": "Lab 1",
+    "text": "Lab 1\nHints and advises:\n\nThe required functions can be found in the pre-reading material.\nWhen you need to view the required arguments for a function, you can do so by typing ?function.\nHow to access a dataset’s variable?\ndataset$variable"
+  },
+  {
+    "objectID": "slides/labs-1-2.html#lab-2",
+    "href": "slides/labs-1-2.html#lab-2",
+    "title": "Lab 1 & 2",
+    "section": "Lab 2",
+    "text": "Lab 2\nLab topic:\nProbability and Random Variables\nHints and Tips:\n\n\n\\(P(\\text{at least x times something happens})\\) can be broken down into all possible scenarios.\nQ2: The reliability of the chain is the probability that the chain works.\nIt’s recommended to start by dividing the chain into two sections."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 251 Lab presentations",
+    "section": "",
+    "text": "This repository contains the laboratory presentations for STAT 251 (Elementary Statistics), section L1H.\n\nLab 1 & 2\nLab 3 & 4\nLab 5 & 6\nLab 7 & 8"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#classroom-distribution",
+    "href": "slides/labs-7-8.html#classroom-distribution",
+    "title": " Lab 7 & 8 ",
+    "section": "Classroom distribution",
+    "text": "Classroom distribution"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#lab-7",
+    "href": "slides/labs-7-8.html#lab-7",
+    "title": " Lab 7 & 8 ",
+    "section": "Lab 7",
+    "text": "Lab 7\nLab topics:\nConfidence Intervals and Hypothesis Testing\n\nt distribution\nConfidence Intervals definition and interpretation\nCI in hypothesis testing"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing",
+    "href": "slides/labs-7-8.html#hypothesis-testing",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nA statistical hypothesis is a claim about the value of a parameter.\nIn any hypothesis-testing problem, there are two contradictory hypotheses to consider: null-hypothesis (\\(H_0\\)) and alternative hypothesis (\\(H_a\\))."
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-1",
+    "href": "slides/labs-7-8.html#hypothesis-testing-1",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nIf there are two types of tests that we will deal with. If \\(\\mu\\) is the true value and \\(\\mu_0\\) is the postulated value, for which we are testing, then the possible one-sided and two-sided tests are:\nOne-sided: \\(H_o: \\mu \\geq \\mu_o,H_a: \\mu &lt; \\mu_o\\) or \\(H_o: \\mu \\leq \\mu_o,H_a: \\mu &gt; \\mu_o\\)\nTwo-sided: \\(H_o: \\mu = \\mu_o,H_a: \\mu \\neq \\mu_o\\)"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-2",
+    "href": "slides/labs-7-8.html#hypothesis-testing-2",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\nBased on that, we create our null model."
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-3",
+    "href": "slides/labs-7-8.html#hypothesis-testing-3",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nNull model | Significance level"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-4",
+    "href": "slides/labs-7-8.html#hypothesis-testing-4",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nNull model | Significance level  | P-value"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-5",
+    "href": "slides/labs-7-8.html#hypothesis-testing-5",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\n\nNull model | Significance level  | P-value"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#hypothesis-testing-6",
+    "href": "slides/labs-7-8.html#hypothesis-testing-6",
+    "title": " Lab 7 & 8 ",
+    "section": "Hypothesis testing",
+    "text": "Hypothesis testing\nWhen we increase the \\(n\\), the null model distribution becomes narrower."
+  },
+  {
+    "objectID": "slides/labs-7-8.html#lab-8",
+    "href": "slides/labs-7-8.html#lab-8",
+    "title": " Lab 7 & 8 ",
+    "section": "Lab 8",
+    "text": "Lab 8\nLab topics:\nANOVA\n\nANOVA vs pairwise comparison\nHypothesis of ANOVA\nInterpretation"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#multiple-comparisons",
+    "href": "slides/labs-7-8.html#multiple-comparisons",
+    "title": " Lab 7 & 8 ",
+    "section": "Multiple comparisons",
+    "text": "Multiple comparisons"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#one-way-anova",
+    "href": "slides/labs-7-8.html#one-way-anova",
+    "title": " Lab 7 & 8 ",
+    "section": "One-Way ANOVA",
+    "text": "One-Way ANOVA\nIn this case, our hypothesis involves multiple means.\n\\[H_0: \\mu_1 = \\mu_2 = \\cdots = \\mu_n, \\,\\,\\, n \\geq 3.\\]\n\\[H_1: \\text{at least one mean is different. }\\]"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#one-way-anova-1",
+    "href": "slides/labs-7-8.html#one-way-anova-1",
+    "title": " Lab 7 & 8 ",
+    "section": "One-Way ANOVA",
+    "text": "One-Way ANOVA\nAssumptions and requirements:\n\nANOVA requires one continuous variable and another one that is categorical.\nResiduals are normally distributed.\nVariances of populations are equal (the highest variance isn’t many multiples bigger than the smallest group variance).\nResponses for a given group are independent and identically distributed."
+  },
+  {
+    "objectID": "slides/labs-7-8.html#one-way-anova-2",
+    "href": "slides/labs-7-8.html#one-way-anova-2",
+    "title": " Lab 7 & 8 ",
+    "section": "One-Way ANOVA",
+    "text": "One-Way ANOVA\nIf p-value &gt; \\(\\alpha\\):\n\nThere are no significant differences between the groups.\n\nIf p-value &lt; \\(\\alpha\\):\n\nThere are is a significant difference between at least one pair of the groups.\nPairwise t-tests will identify the significant difference(s)."
+  },
+  {
+    "objectID": "slides/labs-7-8.html#one-way-anova-4",
+    "href": "slides/labs-7-8.html#one-way-anova-4",
+    "title": " Lab 7 & 8 ",
+    "section": "One-Way ANOVA",
+    "text": "One-Way ANOVA"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#classroom-distribution",
+    "href": "slides/labs-5-6.html#classroom-distribution",
+    "title": " Lab 5 & 6 ",
+    "section": "Classroom distribution",
+    "text": "Classroom distribution"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#lab-5",
+    "href": "slides/labs-5-6.html#lab-5",
+    "title": " Lab 5 & 6 ",
+    "section": "Lab 5",
+    "text": "Lab 5\nLab topics:\nSampling Distribution + CLT\n\nDifference between a statistic & a parameter\nA statistic can be a random variable\nCentral Limit Theorem (CLT)"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section",
+    "href": "slides/labs-5-6.html#section",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Review:\n\nPopulations can be at least partially described by population parameters.\nStatistics or estimators are used to estimate population parameters.\nThe sampling distribution of a statistic is the distribution of that statistic, considered as a random variable."
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-2",
+    "href": "slides/labs-5-6.html#section-2",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "A simple simulation:\n\n\nCode\nx &lt;- rexp(n = 500, rate = 1)\nhist(x, prob=TRUE, breaks=20)"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-3",
+    "href": "slides/labs-5-6.html#section-3",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Many simulations:\n\n\nCode\nn &lt;- 50\nN &lt;- 1000\n# Create a matrix which stores the 1000 samples of size 50\nX &lt;- matrix(data = rexp(N*n, rate = 1), nrow = N, ncol = n)\n# Find the mean of each sample\nxbar &lt;- apply(X, MARGIN = 1, FUN = mean)\n\nplot(density(xbar))"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#lab-6",
+    "href": "slides/labs-5-6.html#lab-6",
+    "title": " Lab 5 & 6 ",
+    "section": "Lab 6",
+    "text": "Lab 6\nLab topics:\nInference: Point Estimates\n\nUnderstand Point Estimates\nLearn relevant R functions (loops)\nReview Random Variables"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-4",
+    "href": "slides/labs-5-6.html#section-4",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Review:\n\nAn estimator is a function of the sample, i.e., it is a rule that tells you how to calculate an estimate of a parameter from a sample.\nAn estimate is a value of an estimator calculated from a sample.\nDifferent estimators are possible for the same parameter.\nWe want unbiased point estimators."
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-5",
+    "href": "slides/labs-5-6.html#section-5",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Some important estimators\n\nSample mean: \\(\\bar{X} = \\frac{X_1+ \\cdots+ X_n}{n}\\)\nSample Variance: \\(S^2 = \\frac{1}{n-1} \\sum_{i= 1}^n (X_i - \\bar{X})^2\\)"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-6",
+    "href": "slides/labs-5-6.html#section-6",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Loops:\n\n\nCode\nn &lt;- 10\nN &lt;- 1000\nmu &lt;- 105 \nsigma &lt;- 12\n## Create an empty matrix to store the samples in and an empty vector to store sample variances\nsamples &lt;- matrix(NA, nrow = N, ncol = n)\nsample.variances&lt;-rep(NA, N)\n\nfor (i in 1:N) {\n  samples[i,] &lt;- rnorm(n, mean=mu, sd=sigma)\n  deviation &lt;- samples[i,] - mean(samples[i,])\n  sample.variances[i] &lt;- (1/(n-1)) * sum((deviation)^2) \n  }\n\nmean(sample.variances)\n\n\n#&gt; [1] 142.6414\n\n\nCode\nhist(sample.variances, prob = TRUE, breaks = 20)"
+  },
+  {
+    "objectID": "slides/labs-5-6.html#section-7",
+    "href": "slides/labs-5-6.html#section-7",
+    "title": " Lab 5 & 6 ",
+    "section": "",
+    "text": "Code\n# create a matrix which stores the 1000 samples of size 10\nX &lt;- matrix(data = rnorm(n*N, mean=mu, sd=sigma), nrow = N, ncol = n)\n# find the mean of each sample; MARGIN = 1, indicates rows in the matrix X\nsample.variances2 &lt;- apply(X, MARGIN = 1, FUN = var)\n\nmean(sample.variances2)\n\n\n#&gt; [1] 142.0096\n\n\nCode\nplot(density(sample.variances2))"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#section",
+    "href": "slides/labs-7-8.html#section",
+    "title": " Lab 7 & 8 ",
+    "section": "",
+    "text": "Review:\n\nA confidence interval (CI) is an estimate of a range of values that is likely to include the true population parameter of interest.\nA CI is \\(\\text{CI} = \\bar{x} \\pm Z_{\\frac{\\alpha}{2}}\\frac{\\sigma}{\\sqrt{n}}\\)"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#section-1",
+    "href": "slides/labs-7-8.html#section-1",
+    "title": " Lab 7 & 8 ",
+    "section": "",
+    "text": "Review:\n\nWe use a t-distribution instead of a normal distribution when we do not know the value of \\(\\sigma\\).\n\nA simulation:\n\n\nCode\nN &lt;- 10000 # number of iteration \nn &lt;- 16 # sample size\nm &lt;- 10 # mean\ns &lt;- sqrt(9) # SD\nalpha &lt;- 0.05 # (1-confidence level)\n\nun &lt;- nw &lt;- matrix(NA, nrow =N, ncol =2) # 2 blank matrices \nevaluate &lt;- evaluate.true &lt;- rep(FALSE, N) # 2 blank vectors\nin.CI &lt;- function(x){ (x[1]&lt;=m & m&lt;=x[2])}\n# Define a function called in.CI. The input x is a 2-element vector, representing an interval. If m is within the interval, in.CI return TRUE, otherwise returns FALSE.\n\nfor (i in 1:N){ # loop starts\nSample &lt;- rnorm(n, m, s) # generate normal variates with given parameters\nun[i,] &lt;- c(mean(Sample) - (-1)*qt(alpha/2, df = n - 1)*sd(Sample)/sqrt(n), mean(Sample) + (-1)*qt(alpha/2, df = n - 1)*sd(Sample)/sqrt(n) )\n# Calculate the i-th confidence interval for estimated SD\nnw[i,] &lt;- c(mean(Sample) - (-1)*qnorm(alpha/2)*s/sqrt(n), mean(Sample) + (-1)*qnorm(alpha/2)*s/sqrt(n) )\n# Calculate the i-th confidence interval for known SD\nevaluate[i] &lt;- in.CI(un[i,])\n# m is contained in 1st CI when SD unknown? \nevaluate.true[i] &lt;- in.CI(nw[i,])\n# m is contained in 2nd CI when SD known?\n}\nsum(evaluate == FALSE)/N # count and make a ratio sum(evaluate.true == FALSE)/N # count and make a ratio\"\n\n\n#&gt; [1] 0.0484\n\n\nCode\n#\n#\n#\n#\n#"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#section-2",
+    "href": "slides/labs-7-8.html#section-2",
+    "title": " Lab 7 & 8 ",
+    "section": "",
+    "text": "Code\nconf_int &lt;- function(n = 100, mean = 0, sd = 1){\n  sample &lt;- rnorm(n = n, mean = mean, sd = sd)\n  test &lt;- t.test(sample)\n  result &lt;- broom::tidy(test) |&gt;\n    select(estimate, conf.low, conf.high, p.value)\n  return(result)\n}\n\nset_intervals &lt;- function(sample  = 100, n = 100, mean = 0, sd = 1){\n  \n  intervals &lt;- map_dfr(1:sample, ~ conf_int(n = n, mean = mean, sd = sd))\n  \n  intervals &lt;- intervals |&gt;\n    mutate(id = 1:n(),\n           result = ifelse(sign(conf.low) == sign(conf.high), \"reject\", \"accept\")) |&gt;\n    relocate(id)\n  \n  return(intervals)\n}\n\nset.seed(1111)\nintervals &lt;- set_intervals(sample = 20,\n                           n = 20)\n\nintervals |&gt;\n  ggplot(aes(estimate, id, color = result)) +\n  geom_point() +\n  geom_segment(aes(x = conf.low, y = id, xend = conf.high, yend = id, color = result)) +\n  geom_vline(xintercept = 0,\n             linetype = \"dashed\")"
+  },
+  {
+    "objectID": "slides/labs-7-8.html#one-way-anova-3",
+    "href": "slides/labs-7-8.html#one-way-anova-3",
+    "title": " Lab 7 & 8 ",
+    "section": "One-Way ANOVA",
+    "text": "One-Way ANOVA"
+  }
+]
